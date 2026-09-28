@@ -8,7 +8,7 @@ const APP_INFO = {
   name: 'DevOps Batch 14 Demo App',
   assignment: 'Server Monitoring, Logging & CI Pipeline',
   version: '1.0.0',
-  author: 'DevOps Student'
+  author: 'H. M. Masum Billah'
 };
 
 // Root endpoint

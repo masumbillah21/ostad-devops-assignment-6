@@ -15,7 +15,7 @@
     "grafana",
     "loki"
   ],
-  "author": "DevOps Batch 14",
+  "author": "H. M. Masum Billah",
   "license": "MIT",
   "dependencies": {
     "express": "^4.19.2"

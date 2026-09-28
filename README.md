@@ -13,10 +13,10 @@
 
 | Field | Information |
 | :--- | :--- |
-| **Student Name** | `H. M. Masum Billah` |
+| **Student Name** | **H. M. Masum Billah** |
 | **Batch** | **DevOps Batch 14** |
 | **Assignment Title** | **Server Monitoring, Logging & CI Pipeline** |
-| **GitHub Repository** | `https://github.com/[Your-GitHub-Username]/devops-practice` |
+| **GitHub Repository** | `https://github.com/masumbillah21/ostad-devops-assignment-6` |
 | **Host Environment** | Ubuntu 22.04 / 24.04 LTS on VMware Virtual Machine |
 | **Submission Deadline** | 27.09.2026 |
 
