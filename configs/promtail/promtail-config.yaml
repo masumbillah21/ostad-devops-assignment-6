@@ -1,0 +1,46 @@
+# Promtail Configuration
+# DevOps Batch 14 - Server Monitoring & Logging Assignment
+
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+  log_level: info
+
+positions:
+  filename: /var/log/positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+    batchwait: 1s
+    batchsize: 1048576
+
+scrape_configs:
+  # Scrape standard system log files
+  - job_name: varlogs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: varlogs
+          host: ubuntu-vm
+          __path__: /var/log/*log
+
+  # Scrape system log (syslog)
+  - job_name: syslog
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: syslog
+          host: ubuntu-vm
+          __path__: /var/log/syslog
+
+  # Scrape authentication log
+  - job_name: authlog
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: authlog
+          host: ubuntu-vm
+          __path__: /var/log/auth.log

@@ -1,0 +1,17 @@
+[Unit]
+Description=Promtail Log Collector Agent
+Documentation=https://grafana.com/docs/loki/latest/clients/promtail/
+After=network.target loki.service
+
+[Service]
+User=promtail
+Group=promtail
+SupplementaryGroups=adm
+Type=simple
+ExecStart=/usr/local/bin/promtail -config.file=/etc/promtail/promtail-config.yaml
+Restart=always
+RestartSec=5s
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

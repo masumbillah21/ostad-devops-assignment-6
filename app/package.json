@@ -1,0 +1,32 @@
+{
+  "name": "devops-batch14-app",
+  "version": "1.0.0",
+  "description": "Sample Node.js application for Server Monitoring, Logging & CI Pipeline",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest --runInBand --detectOpenHandles",
+    "build": "node build.js"
+  },
+  "keywords": [
+    "devops",
+    "ci-cd",
+    "prometheus",
+    "grafana",
+    "loki"
+  ],
+  "author": "DevOps Batch 14",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "modulePathIgnorePatterns": ["<rootDir>/dist/"]
+  }
+}

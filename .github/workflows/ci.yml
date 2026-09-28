@@ -1,0 +1,65 @@
+name: DevOps CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  ci-pipeline:
+    name: Build, Test & Package Artifact
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: ./app
+
+    steps:
+      - name: 1. Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 2. Set up Node.js Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: './app/package-lock.json'
+        continue-on-error: true # Falls back to existing system Node.js on self-hosted runner
+
+      - name: 3. Install Project Dependencies
+        run: |
+          echo "============================================="
+          echo "Installing application dependencies..."
+          echo "============================================="
+          npm install
+
+      - name: 4. Run Automated Tests (Test Phase)
+        run: |
+          echo "============================================="
+          echo "Running unit test suite with Jest..."
+          echo "============================================="
+          npm test
+
+      - name: 5. Build Application (Build Phase)
+        run: |
+          echo "============================================="
+          echo "Building production bundle..."
+          echo "============================================="
+          npm run build
+
+      - name: 6. Verify Build Output (Artifact Generation)
+        run: |
+          echo "============================================="
+          echo "Verifying generated build artifacts..."
+          echo "============================================="
+          ls -la dist/
+          cat dist/build-info.json
+
+      - name: 7. Upload Build Artifacts (Artifact Upload)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact-v${{ github.run_number }}
+          path: app/dist/
+          retention-days: 14
+          if-no-files-found: error
